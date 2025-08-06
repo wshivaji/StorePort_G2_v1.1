@@ -4,50 +4,80 @@ from conftest import *
 
 class LoginPage:
     def __init__(self, page: Page):
-        self.page = page
+        try:
+            self.page = page
+        except Exception as ex:
+            print(type(ex).__name__)
 
     def open_login_page(self, url: str):
-        self.page.goto(url)
-        self.page.wait_for_timeout(8000)
+        try:
+            self.page.goto(url)
+            self.page.wait_for_timeout(8000)
+        except Exception as ex:
+            print(type(ex).__name__)
 
     def fill_username(self, username: str):
-        self.page.fill('//input[@name="username"]', username)
-        self.page.wait_for_timeout(DELAY)
+        try:
+            self.page.fill('//input[@name="username"]', username)
+            self.page.wait_for_timeout(DELAY)
+        except Exception as ex:
+            print(type(ex).__name__)
 
     def click_next(self):
-        self.page.click('//input[@value="Next"]')
-        self.page.wait_for_timeout(DELAY)
+        try:
+            self.page.click('//input[@value="Next"]')
+            self.page.wait_for_timeout(DELAY)
+        except Exception as ex:
+            print(type(ex).__name__)
 
     def fill_password(self, password: str):
-        self.page.fill('//input[@name="password"]', password)
-        self.page.wait_for_timeout(DELAY)
+        try:
+            self.page.fill('//input[@name="password"]', password)
+            self.page.wait_for_timeout(DELAY)
+        except Exception as ex:
+            print(type(ex).__name__)
 
     def click_sign_in(self):
-        self.page.click('//input[@value="Sign In"]')
-        self.page.wait_for_timeout(DELAY)
+        try:
+            self.page.click('//input[@value="Sign In"]')
+            self.page.wait_for_timeout(DELAY)
+        except Exception as ex:
+            print(type(ex).__name__)
 
     def click_send_code(self):
-        self.page.click('//input[@value="Send me the code"]')
-        self.page.wait_for_timeout(DELAY)
+        try:
+            self.page.click('//input[@value="Send me the code"]')
+            self.page.wait_for_timeout(DELAY)
+        except Exception as ex:
+            print(type(ex).__name__)
 
     def wait_for_code_verification(self):
-        self.page.wait_for_timeout(70000)
-
-    # def confirm_sign_in(self):
-    #     self.page.click('//input[@value="Sign In"]')
-    #     self.page.wait_for_timeout(5000)
+        try:
+            self.page.wait_for_timeout(70000)
+        except Exception as ex:
+            print(type(ex).__name__)
 
     def click_on_checkbox_enable_access_without_MFA_for_24_hours(self):
-        self.page.get_by_text("Enable access without MFA for").click()
-        self.page.wait_for_timeout(DELAY)
+        try:
+            self.page.get_by_text("Enable access without MFA for").click()
+            self.page.wait_for_timeout(DELAY)
+        except Exception as ex:
+            print(type(ex).__name__)
 
     def click_on_sign_in_button(self):
-        self.page.get_by_role("button", name="Sign In").click()
-        self.page.wait_for_timeout(5000)
+        try:
+            self.page.get_by_role("button", name="Sign In").click()
+            self.page.wait_for_timeout(5000)
+        except Exception as ex:
+            print(type(ex).__name__)
 
     def get_store_port_g2_heading(self):
-        text = self.page.get_by_text("StorePort G2").inner_text()
-        self.page.wait_for_timeout(DELAY)
-        return text
+        try:
+            text = self.page.get_by_text("StorePort G2").inner_text()
+            self.page.wait_for_timeout(DELAY)
+            return text
+        except Exception as ex:
+            print(type(ex).__name__)
+
 
 

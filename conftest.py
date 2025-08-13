@@ -10,18 +10,19 @@ from pathlib import Path
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-# Define global variables
+
 store_port_login_url = "https://g2-cr-client-web-489921633482.us-central1.run.app/login"
 FIRST_NAME = "core"
 LAST_NAME = "user"
-PASSWORD = "Right_1r1s"
-EMAIL = "shivaji.wankhede@facefirst.com"
+PASSWORD = "realize7Guard$Him"
+EMAIL = "manogna.maramreddy@facefirst.com"
 JOB_TITLE = "QA"
 DEPARTMENT = "QA DEPT"
 WORK_ADDRESS = "TEST WORK ADDRESS"
 COUNTRY = ['Canada', 'Australia', 'United States']
 ROLE = ['Admin - Full', 'Admin - Full (Engineering)', 'Customer Experience', 'Full Access (Engineering, except Admin)', 'Full Access except Admin', 'Sales', 'Sales + Tech Tools', 'Tech Services', 'Tech Services UK', 'Tech Services with User Admin', 'Theft Investigator', 'Tradeshow Demo User']
 STORE_PERMISSIONS = ['Gatekeeper', '4 Way Market']
+
 # BASE_URL = "https://10.0.1.36/"
 
 # 1 letsencrypt, 2 ip, 3 go daddy

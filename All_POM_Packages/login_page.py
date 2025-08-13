@@ -2,6 +2,7 @@ from playwright.sync_api import Page
 from conftest import *
 
 
+
 class LoginPage:
     def __init__(self, page: Page):
         try:
@@ -53,7 +54,7 @@ class LoginPage:
 
     def wait_for_code_verification(self):
         try:
-            self.page.wait_for_timeout(70000)
+            self.page.wait_for_timeout(50000)
         except Exception as ex:
             print(type(ex).__name__)
 

@@ -33,8 +33,10 @@ def test_video_review(page: Page, setup):
     setup.click_video_review_config()
     page.wait_for_load_state("domcontentloaded")
     page.wait_for_timeout(4000)
-    setup.click_on_store()
+    # setup.click_on_store()
     setup.click_on_ascending()
+    page.wait_for_timeout(20000)
+
 
 
 

@@ -23,19 +23,19 @@ class UserCreation:
 
     def fill_first_name(self):
         try:
-            self.page.fill('//input[@name="firstName"]', "chandana")
+            self.page.fill('//input[@name="firstName"]', "sinchu")
         except Exception as ex:
             print(f"Error in fill_first_name: {type(ex).__name__} ")
 
     def fill_last_name(self):
         try:
-            self.page.fill('//input[@name="lastName"]', "maramreddy")
+            self.page.fill('//input[@name="lastName"]', "devanapalli")
         except Exception as ex:
             print(f"Error in fill_last_name: {type(ex).__name__} ")
 
     def fill_email(self):
         try:
-            self.page.fill('//input[@name="email"]', 'b75698060@gmail.com')
+            self.page.fill('//input[@name="email"]', 's60191821@gmail.com')
         except Exception as ex:
             print(f"Error in fill_email: {type(ex).__name__} ")
 

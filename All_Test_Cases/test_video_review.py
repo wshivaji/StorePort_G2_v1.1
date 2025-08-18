@@ -34,8 +34,18 @@ def test_video_review(page: Page, setup):
     page.wait_for_load_state("domcontentloaded")
     page.wait_for_timeout(4000)
     # setup.click_on_store()
-    setup.click_on_ascending()
     page.wait_for_timeout(20000)
+    # setup.validate_filtered_store_data()
+    setup.Ammount()
+    page.wait_for_timeout(20000)
+
+
+
+
+
+
+
+
 
 
 

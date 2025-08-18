@@ -79,6 +79,14 @@ class LoginPage:
             return text
         except Exception as ex:
             print(type(ex).__name__)
+    def empty_email(self):
+        self.page.get_by_role("textbox", name="Email").click()
+    def empty_password(self):
+        self.page.get_by_role("textbox", name="Password").click()
+
+
+
+
 
 
 

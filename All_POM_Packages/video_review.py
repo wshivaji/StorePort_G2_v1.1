@@ -11,28 +11,27 @@ class VideoReview:
         self.page.locator('//span[text()="Video Review"]').click()
 
 
-    # def click_on_store(self):
-    #     self.page.get_by_role("textbox", name="Search by Store Name").click()
-    #     self.page.get_by_role("textbox", name="Search by Store Name").press("CapsLock")
-    #     self.page.get_by_role("textbox", name="Search by Store Name").fill("SAFEWAY 1804")
-    #     self.page.get_by_role("textbox", name="Search by Store Name").press("Enter")
-    #     self.page.get_by_role("textbox", name="Filter By Event Time in Store").click()
-    #     self.page.locator("div").filter(has_text=re.compile(r"^Filter By Event Time in Store$")).get_by_role(
-    #         "button").click()
-    #     self.page.get_by_role("button").filter(has_text=re.compile(r"^$")).first.click()
-    #     self.page.get_by_role("button", name="31").click()
-    #     self.page.get_by_role("button", name="31").press("Enter")
-    #     self.page.locator(".MuiSelect-select").first.click()
-    #     self.page.get_by_role("option", name="Confirmed", exact=True).get_by_role("paragraph").click()
-    #     self.page.get_by_role("option", name="No filters applied").press("Enter")
-    #     self.page.get_by_role("option", name="Confirmed", exact=True).get_by_role("paragraph").click()
-    #     self.page.get_by_role("row", name="Event Time in Store Store").get_by_role("button").nth(1).click()
+        #above columns like search on store,filter by event time,filter by classification
+    def click_on_store(self):
+        self.page.get_by_role("textbox", name="Search by Store Name").click()
+        self.page.get_by_role("textbox", name="Search by Store Name").press("CapsLock")
+        self.page.get_by_role("textbox", name="Search by Store Name").fill("SAFEWAY 1804")
+        self.page.get_by_role("textbox", name="Search by Store Name").press("Enter")
+        self.page.get_by_role("textbox", name="Filter By Event Time in Store").click()
+        self.page.locator("div").filter(has_text=re.compile(r"^Filter By Event Time in Store$")).get_by_role(
+            "button").click()
+        self.page.get_by_role("button").filter(has_text=re.compile(r"^$")).first.click()
+        self.page.get_by_role("button", name="31").click()
+        self.page.get_by_role("button", name="31").press("Enter")
+        self.page.locator(".MuiSelect-select").first.click()
+        self.page.get_by_role("option", name="Confirmed", exact=True).get_by_role("paragraph").click()
+        self.page.get_by_role("option", name="No filters applied").press("Enter")
+        self.page.get_by_role("option", name="Confirmed", exact=True).get_by_role("paragraph").click()
+        self.page.get_by_role("row", name="Event Time in Store Store").get_by_role("button").nth(1).click()
 
 
-    def click_on_ascending(self):
-
-
-        #clicking on store
+    def validate_filtered_store_data(self):
+        # Applying the filter for "Store" column with value "SAFEWAY 1804"
         self.page.locator("div").filter(has_text=re.compile(r"^Store$")).nth(2).click()
         self.page.get_by_role("row", name="Event Time in Store Store").get_by_role("button").nth(2).hover()
         self.page.get_by_role("row", name="Event Time in Store Store").get_by_role("button").nth(2).click()
@@ -41,31 +40,42 @@ class VideoReview:
         self.page.get_by_role("textbox", name="Value").press("CapsLock")
         self.page.get_by_role("textbox", name="Value").fill("SAFEWAY 1804")
         self.page.get_by_role("button", name="APPLY FILTER").click()
+        self.page.wait_for_timeout(3000)
+        assert  self.page.locator("div:nth-child(2) > div:nth-child(2) > .MuiStack-root > .MuiBox-root > span > .MuiTypography-root").inner_text()
 
-
-        # click on exit location
-        self.page.locator("div").filter(has_text=re.compile(r"^Exit Location$")).nth(1).click()
-        self.page.locator(".MuiPopover-root.MuiMenu-root.MuiModal-root.css-1sucic7 > .MuiBackdrop-root").click()
-        self.page.get_by_role("row", name="Event Time in Store Store").get_by_role("button").nth(2).hover()
-        self.page.get_by_role("row", name="Event Time in Store Store").get_by_role("button").nth(2).click()
-        self.page.get_by_role("menuitem", name="Filters").click()
-        self.page.get_by_role("textbox", name="Value").nth(1).click()
-        self.page.get_by_role("textbox", name="Value").nth(1).fill("STARBUCKS DOOR")
-        self.page.get_by_role("button", name="APPLY FILTER").click()
-
-
-
-        # click on 30d theft activity
-        self.page.locator("div").filter(has_text=re.compile(r"^30d Theft Activity$")).nth(1).click()
-        self.page.locator(".MuiPopover-root.MuiMenu-root.MuiModal-root.css-1sucic7 > .MuiBackdrop-root").click()
-        self.page.get_by_role("row", name="Event Time in Store Store").get_by_role("button").nth(1).hover()
+    def Ammount(self):
+        self.page.get_by_text("Amount").click()
         self.page.get_by_role("row", name="Event Time in Store Store").get_by_role("button").nth(1).click()
-        self.page.get_by_role("menuitem", name="Filters").click()
-        self.page.locator(
-            ".MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl.MuiInputBase-sizeSmall.css-1w52ef5 > .MuiSelect-select").click()
-        self.page.get_by_role("option", name="Typical").click()
-        self.page.locator("#menu- div").first.click()
-        self.page.get_by_role("button", name="APPLY FILTER").click()
+        amount_values = []
+        # Locate the 'Amount' column specifically and extract the values
+        rows = self.page.locator("table tbody tr")
+        for row in rows.all():
+            amount = row.locator('td:nth-child(5)').text_content()
+            if amount:
+                try:
+                    amount_values.append(float(amount.strip()))
+                except ValueError:
+                    continue
+        # Check if the list is in ascending order
+        is_sorted = all(amount_values[i] <= amount_values[i + 1] for i in range(len(amount_values) - 1))
+        assert is_sorted
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
